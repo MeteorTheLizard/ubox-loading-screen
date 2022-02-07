@@ -114,7 +114,8 @@
 				margin-top: -25px;
 				margin-bottom: -5px;
 			}
-			.title-text span {
+			#title-server-info {
+				visibility: hidden;
 				font: 20px Helvetica;
 			}
 
@@ -179,11 +180,14 @@
 			<div class="title-text">
 				<h1>Welcome to</h1>
 				<h2>Sandbox: ULTRA</h2>
-				<br>
-				<br>
-				<span id="name">servername</span>
-				<br>
-				<span id="map">Playing on: gm_assfat</span>
+
+				<div id="title-server-info">
+					<br>
+					<br>
+					<span id="name">servername</span>
+					<br>
+					<span id="map">Playing on: gm_assfat</span>
+				</div>
 			</div>
 
 
@@ -241,6 +245,8 @@
 			{
 				$("#name").text(servername);
 				$("#map").text("Playing on: " + mapname);
+
+				document.getElementById("title-server-info").style.visibility = "visible"; 
 			}
 
 			function DownloadingFile(file) {
