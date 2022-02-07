@@ -1,0 +1,255 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Sandbox: ULTRA</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=1024, initial-scale=1, shrink-to-fit=no">
+		<script type="text/javascript" src="jquery.min.js"></script>
+
+		<meta name="description" content="Loading Screen">
+		<meta name="keywords" content="Sandbox: ULTRA Loading Screen ubox">
+		<meta name="author" content="MrRangerLP (Meteor) - MeteorTheLizard">
+
+		<meta name="robots" content="noindex,nofollow">
+
+
+		<link rel="icon" type="image/x-icon" href="favicon.png">
+
+
+		<style>
+			html, body{
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			body {
+				background: #000;
+			}
+			.fade {
+				-webkit-animation: fadein 1s;
+				-moz-animation: fadein 1s;
+				-ms-animation: fadein 1s;
+				-o-animation: fadein 1s;
+				animation: fadein 1s;
+			}
+			@keyframes fadein {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+			@-moz-keyframes fadein {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+			@-webkit-keyframes fadein {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+			@-ms-keyframes fadein {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+			@-o-keyframes fadein {
+				from { opacity: 0; }
+				to   { opacity: 1; }
+			}
+
+
+			.bg, .bg2 {
+				height: 100%;
+				width: 100%;
+				top: 0px;
+				left: 0px;
+				position: absolute;
+
+
+				background: #000 none 50%;
+
+				background-size: 100% 100%;
+				-webkit-background-size: 100% 100%;
+				-moz-background-size: 100% 100%;
+				-o-background-size: 100% 100%;
+
+				background-repeat: no-repeat;
+			}
+			.bg {
+				z-index: 0;
+			}
+			.bg2 {
+				z-index: -1;
+			}
+
+
+			.server-info {
+				height: 100%;
+				width: 100%;
+
+				z-index: 11;
+			}
+
+
+			.title-text {
+				position: absolute;
+				left: 50%;
+				top: 10%;
+
+
+				-webkit-transform: translate(-50%,-10%);
+				transform: translate(-50%,-10%);
+
+
+				color: #F2FFAE;
+
+				text-align: center;
+				text-shadow: 2px 2px #060606;
+			}
+			.title-text h1 {
+				font: 35px Helvetica;
+				margin-top: 5%;
+			}
+			.title-text h2 {
+				font: 55px Helvetica;
+				margin-top: -25px;
+				margin-bottom: -5px;
+			}
+			.title-text span {
+				font: 20px Helvetica;
+			}
+
+
+			.rules {
+				position: absolute;
+				top: 50%;
+				left: 10%;
+
+				-webkit-transform: translate(-10%,-50%);
+				transform: translate(-10%,-50%);
+
+
+				background-color: rgba(6,6,6,0.5);
+				color: #F2FFAE;
+
+				border-radius: 25px;
+
+				padding-top: 5;
+				padding-bottom: 5;
+				padding-left: 25px;
+				padding-right: 25px;
+			}
+			.rules h1 {
+				text-align: left;
+				text-shadow: -2px 2px #060606;
+			}
+			.rules h2 {
+				text-align: left;
+				text-shadow: -2px 2px #060606;
+
+				margin-top: -10px;
+			}
+
+
+			#spambox {
+				float: right;
+				overflow: hidden;
+				max-height: 35%;
+				max-width: 25%;
+
+				margin-top: 11px;
+				margin-right: 15px;
+
+				-webkit-transform: translate(-0%,-0%); // Imagine having to do this.. BUGS.
+				transform: translate(-0%,-0%);
+
+				color: #F2FFAE;
+
+				text-align: left;
+				text-shadow: -2px 2px #060606;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bg"></div>
+		<div class="bg2"></div>
+
+
+		<div class="server-info">
+			<div class="title-text">
+				<h1>Welcome to</h1>
+				<h2>Sandbox: ULTRA</h2>
+				<br>
+				<br>
+				<span id="name">servername</span>
+				<br>
+				<span id="map">Playing on: gm_assfat</span>
+			</div>
+
+
+			<div class="rules">
+				<h1>Rules:</h1>
+
+				<h2>1. Don't be an ass francis.</h2>
+				<h2>2. Do not lag the server.</h2>
+				<h2>3. Do not crash the server.</h2>
+				<h2>4. Do not exploit bugs.</h2>
+			</div>
+
+
+			<div id="spambox">
+
+			</div>
+		</div>
+
+
+		<script>
+			document.body.className = 'fade';
+		</script>
+
+
+		<script type="text/javascript">
+			var iCount = 2
+
+			var $bg = $(".bg")
+			var $bg2 = $(".bg2")
+
+			var iLast = 0
+			var iRandom = 1
+
+			$bg2.css({backgroundImage: "url(backgrounds/0.jpg)"}),
+
+				(function a() {
+					while (iRandom == iLast) {
+						iRandom = Math.floor(iCount * Math.random());
+					}
+
+					iLast = iRandom
+
+					$bg.hide()
+						.css({backgroundImage: "url(backgrounds/" + iRandom + ".jpg)"})
+						.delay(5e3)
+						.fadeTo(1200,1,function() {
+							$bg2.css({backgroundImage: "url(backgrounds/" + iRandom + ".jpg)"}), a();
+						});
+				})();
+		</script>
+
+
+		<script type="text/javascript">
+			function GameDetails(servername,serverurl,mapname,maxplayers,steamid,gamemode,volume,lang,gamemodeNice)
+			{
+				$("#name").text(servername);
+				$("#map").text("Playing on: " + mapname);
+			}
+
+			function DownloadingFile(file) {
+				$("#spambox").prepend("<span style='color:red'>" + file + "</span><br>");
+			}
+
+			function SetStatusChanged(status) {
+				$("#spambox").prepend(status + "<br>");
+			}
+		</script>
+	</body>
+</html>
